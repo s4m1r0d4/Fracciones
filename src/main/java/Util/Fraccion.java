@@ -19,14 +19,14 @@ public class Fraccion
 
     public Fraccion(int num, int den) throws Exception
     {
-        if (num >= 1000) {
+        if (num > 9801) {
             var msg = String.format(
                 "[ERROR] El numerador debe ser menor a mil, se intentó usar %d", num
             );
             throw new Exception(msg);
         }
         
-        if (den >= 1000) {
+        if (den > 9801) {
             var msg = String.format(
                 "[ERROR] El denominador debe ser menor a mil, se intentó usar %d", den
             );
@@ -96,8 +96,8 @@ public class Fraccion
 
     private void genNumStrings()
     {
-        numStrings = new String[1000];
-        for (int i = 0; i < 1000; ++i) {
+        numStrings = new String[9802];
+        for (int i = 0; i < numStrings.length; ++i) {
             try {
                 numStrings[i] = Cardinales.toString(i);
             } catch (Exception e) {
@@ -111,8 +111,8 @@ public class Fraccion
 
     private void genDenStrings()
     {
-        denStrings = new String[1000];
-        for (int i = 0; i < 1000; ++i) {
+        denStrings = new String[9802];
+        for (int i = 0; i < denStrings.length; ++i) {
             try {
                 denStrings[i] = Ordinales.toString(i);
             } catch (Exception e) {
@@ -182,8 +182,8 @@ public class Fraccion
     
     public Fraccion divide(Fraccion other) throws Exception
     {
-        int newNum = this.num * other.num;
-        int newDen = this.den * other.den;
+        int newNum = this.num * other.den;
+        int newDen = this.den * other.num;
         if (newDen == 0) throw new Exception("[ERROR] El denominador no puede ser cero");
         return new Fraccion(newNum, newDen);
     }

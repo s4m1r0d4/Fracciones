@@ -22,9 +22,9 @@ public class Ordinales
     
     public static String toString(int n) throws Exception
     {
-        if (n > 999) {
+        if (n > 9801) {
             var msg = String.format(
-                "[ERROR] Número máximo para Ordinales.toString() es 999, se intentó usar %d",
+                "[ERROR] Número máximo para Ordinales.toString() es 9801, se intentó usar %d",
                 n);
             throw new Exception(msg);
         }

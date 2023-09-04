@@ -19,21 +19,27 @@ public class Fracciones
 {
 
     public static Fraccion uno, dos;
+    static Scanner scanner;
 
     public static void main(String[] args)
     {
-        try {
-            interpretaExpresion();
-        } catch (Exception ex) {
-            System.err.println(ex);
+        scanner = new Scanner(System.in).useDelimiter("\n");
+        System.out.println("Número de fracciones: ");
+        int t = scanner.nextInt();
+
+        while (t-- > 0) {
+            try {
+                interpretaExpresion();
+            } catch (Exception ex) {
+                System.err.println(ex);
+            }
         }
     }
 
     public static void interpretaExpresion() throws Exception
     {
-        Scanner scanner = new Scanner(System.in).useDelimiter("\n");
         String input = scanner.next().toLowerCase();
-        
+
         var fracciones = input.split("(mas|menos|por|entre)");
         if (fracciones.length < 2) {
             throw new Exception("[ERROR] No se ha ingresado un operador");
@@ -41,10 +47,10 @@ public class Fracciones
         if (fracciones.length > 2) {
             throw new Exception("[ERROR] Se ha ingresado más de un operador");
         }
-        
+
         uno = new Fraccion(fracciones[0]);
         dos = new Fraccion(fracciones[1]);
-        
+
         Fraccion res;
         if (input.contains("mas")) {
             res = uno.add(dos);
@@ -55,7 +61,7 @@ public class Fracciones
         } else { // entre
             res = uno.divide(dos);
         }
-        
+
         System.out.println(res);
     }
 }
